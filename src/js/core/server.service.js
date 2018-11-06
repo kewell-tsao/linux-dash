@@ -17,7 +17,7 @@ angular
        */
       var establishWebsocketConnection = function() {
 
-        var websocketUrl = (location.protocol === 'https:' ? 'wss://' : 'ws://') + window.location.hostname + ':' + window.location.port;
+        var websocketUrl = (location.protocol === 'https:' ? 'wss://' : 'ws://') + window.location.hostname + ':' + window.location.port + window.location.pathname;
 
         if (websocket.connection === null) {
 
@@ -70,7 +70,7 @@ angular
           websocketSupport.browser = true;
 
           // does backend support websockets?
-          $http.get("/websocket").then(function(response) {
+          $http.get(window.location.pathname + "websocket").then(function(response) {
 
             // if websocket_support property exists and is trurthy
             // websocketSupport.server will equal true.
